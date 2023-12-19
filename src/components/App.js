@@ -1,6 +1,6 @@
 
 import React from "react";
-import './../styles/App.css';
+
 
 const App = ()=> {
   const [todos, setTodos] = useState([]);
