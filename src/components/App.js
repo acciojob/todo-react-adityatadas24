@@ -1,6 +1,6 @@
 
 import React from "react";
-
+import './../styles/App.css';
 
 const App = ()=> {
   const [todos, setTodos] = useState([]);
@@ -17,7 +17,7 @@ const App = ()=> {
   }
   function handleDelete(index){
     const newTodos = [...todos]
-    newTodos.splice(index, 1)
+    newTodos.splice(index)
     setTodos(newTodos)
   }  
   return (
