@@ -3,35 +3,39 @@ import React from "react";
 import './../styles/App.css';
 
 const App = ()=> {
-  const [todos, setTodos] = useState([]);
-  const [inputValue, setInputValue] = useState("");
+  const [tasks, setTasks] = useState([]);
+  const [newTask, setNewTask] = useState('');
 
-  function handleChange(e) {
-    setInputValue(e.target.value);
-  }
+  const addTodo = () => {
+    if (newTask.trim() !== '') {
+      setTasks([...tasks, newTask]);
+      setNewTask('');
+    }
+  };
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    setTodos([...todos, inputValue]);
-    setInputValue("");
-  }
-  function handleDelete(index){
-    const newTodos = [...todos]
-    newTodos.splice(index)
-    setTodos(newTodos)
-  }  
+  const removeTodo = (index) => {
+    const updatedTasks = [...tasks];
+    updatedTasks.splice(index, 1);
+    setTasks(updatedTasks);
+  };
+
   return (
     <div>
-      <h1>To-Do-List</h1>
-      <form>
-        <input type="text" value={inputValue} onChange={handleChange} />
-        <button onClick={handleSubmit}>Add Todo</button>
-      </form>
-      <ul >
-        {todos.map((todo,index) => (
-          <li key={todo}>
-            {todo}
-            <button onClick={()=>handleDelete(index)}>Delete</button>
+      <h1>Todo List</h1>
+      <div>
+        <input
+          type="text"
+          value={newTask}
+          onChange={(e) => setNewTask(e.target.value)}
+          placeholder="Enter your task"
+        />
+        <button onClick={addTodo}>Add Todo</button>
+      </div>
+      <ul>
+        {tasks.map((task, index) => (
+          <li key={index}>
+            <span>{task}</span>
+            <button onClick={() => removeTodo(index)}>Delete</button>
           </li>
         ))}
       </ul>
