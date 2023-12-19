@@ -1,1 +1,9 @@
 
+ul{
+    list-style: none;
+    padding-left: 0px;
+ 
+ }
+ li button{
+     margin-left: 100px;
+ }
